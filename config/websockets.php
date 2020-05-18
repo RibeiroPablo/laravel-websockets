@@ -9,6 +9,7 @@ return [
      */
     'dashboard' => [
         'port' => env('LARAVEL_WEBSOCKETS_PORT', 6001),
+        'self_log' => env('LARAVEL_WEBSOCKETS_DASHBOARD_SELF_LOG', true),
     ],
 
     /*
