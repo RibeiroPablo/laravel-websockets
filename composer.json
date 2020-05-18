@@ -1,11 +1,11 @@
 {
-    "name": "beyondcode/laravel-websockets",
+    "name": "RibeiroPablo/laravel-websockets",
     "description": "An easy to use WebSocket server",
     "keywords": [
         "beyondcode",
         "laravel-websockets"
     ],
-    "homepage": "https://github.com/beyondcode/laravel-websockets",
+    "homepage": "https://github.com/RibeiroPablo/laravel-websockets",
     "license": "MIT",
     "authors": [
         {
