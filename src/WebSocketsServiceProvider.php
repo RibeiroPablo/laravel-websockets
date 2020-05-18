@@ -13,6 +13,7 @@ use BeyondCode\LaravelWebSockets\Statistics\Http\Controllers\WebSocketStatistics
 use BeyondCode\LaravelWebSockets\Statistics\Http\Middleware\Authorize as AuthorizeStatistics;
 use BeyondCode\LaravelWebSockets\WebSockets\Channels\ChannelManager;
 use BeyondCode\LaravelWebSockets\WebSockets\Channels\ChannelManagers\ArrayChannelManager;
+use BeyondCode\LaravelWebSockets\WebSockets\WebSocketHook;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
@@ -58,6 +59,10 @@ class WebSocketsServiceProvider extends ServiceProvider
 
         $this->app->singleton(AppProvider::class, function () {
             return app(config('websockets.app_provider'));
+        });
+
+        $this->app->singleton(WebSocketHook::class, function () {
+            return app(config('websockets.hook_manager'));
         });
     }
 

@@ -4,6 +4,7 @@ namespace BeyondCode\LaravelWebSockets\WebSockets\Channels;
 
 use BeyondCode\LaravelWebSockets\Dashboard\DashboardLogger;
 use BeyondCode\LaravelWebSockets\WebSockets\Exceptions\InvalidSignature;
+use BeyondCode\LaravelWebSockets\WebSockets\WebSocketHook;
 use Illuminate\Support\Str;
 use Ratchet\ConnectionInterface;
 use stdClass;
@@ -63,6 +64,7 @@ class Channel
 
         if (! $this->hasConnections()) {
             DashboardLogger::vacated($connection, $this->channelName);
+            app(WebSocketHook::class)->vacatedChannel($connection->app, $connection, $this->channelName);
         }
     }
 
@@ -74,9 +76,11 @@ class Channel
 
         if (! $hadConnectionsPreviously) {
             DashboardLogger::occupied($connection, $this->channelName);
+            app(WebSocketHook::class)->occupiedChannel($connection->app, $connection, $this->channelName);
         }
 
         DashboardLogger::subscribed($connection, $this->channelName);
+        app(WebSocketHook::class)->subscribedChannel($connection->app, $connection, $this->channelName);
     }
 
     public function broadcast($payload)

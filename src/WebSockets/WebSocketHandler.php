@@ -50,6 +50,8 @@ class WebSocketHandler implements MessageComponentInterface
 
         DashboardLogger::disconnection($connection);
 
+        app(WebSocketHook::class)->disconnection($connection->app, $connection);
+
         StatisticsLogger::disconnection($connection);
     }
 
@@ -107,6 +109,8 @@ class WebSocketHandler implements MessageComponentInterface
         ]));
 
         DashboardLogger::connection($connection);
+
+        app(WebSocketHook::class)->connection($connection->app, $connection);
 
         StatisticsLogger::connection($connection);
 

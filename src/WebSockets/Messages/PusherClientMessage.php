@@ -4,6 +4,7 @@ namespace BeyondCode\LaravelWebSockets\WebSockets\Messages;
 
 use BeyondCode\LaravelWebSockets\Dashboard\DashboardLogger;
 use BeyondCode\LaravelWebSockets\WebSockets\Channels\ChannelManager;
+use BeyondCode\LaravelWebSockets\WebSockets\WebSocketHook;
 use Illuminate\Support\Str;
 use Ratchet\ConnectionInterface;
 use stdClass;
@@ -39,6 +40,7 @@ class PusherClientMessage implements PusherMessage
         }
 
         DashboardLogger::clientMessage($this->connection, $this->payload);
+        app(WebSocketHook::class)->clientMessage($this->connection->app, $this->connection, $this->payload);
 
         $channel = $this->channelManager->find($this->connection->app->id, $this->payload->channel);
 

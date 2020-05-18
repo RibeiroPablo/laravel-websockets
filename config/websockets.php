@@ -45,6 +45,15 @@ return [
     'app_provider' => BeyondCode\LaravelWebSockets\Apps\ConfigAppProvider::class,
 
     /*
+     * This class handles websocket events such as connection/disconnection, channel subscribed/occupied/vacated,
+     * client messages and api messages. By default an abstracted class is used with empty methods implemented.
+     * You can create a custom handler to deal with these events by implementing the
+     * '\BeyondCode\LaravelWebSockets\WebSockets\WebSocketHook' interface or extending the
+     * '\BeyondCode\LaravelWebSockets\WebSockets\WebSocketHookManager' abstract class and overriding only the methods needed.
+     */
+    'hook_manager' => \BeyondCode\LaravelWebSockets\WebSockets\WebSocketHookManager::class,
+
+    /*
      * This array contains the hosts of which you want to allow incoming requests.
      * Leave this empty if you want to accept requests from all hosts.
      */

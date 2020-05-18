@@ -2,6 +2,11 @@
 
 All notable changes to `laravel-websockets` will be documented in this file
 
+## 1.5.0 - 2020-05-18
+
+- Add option to hide websocket events from private-websockets-dashboard channel on Dashboard
+- Add option to create a class to respond to websocket events (connection/disconnection, channel subscribed/occupied/vacated, client messages and api messages)
+
 ## 1.4.0 - 2020-03-03
 
 - add support for Laravel 7
